@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FileWordsCounter.Tests
@@ -14,7 +15,7 @@ namespace FileWordsCounter.Tests
             {
                 {"Go", 1 },
                 {"do", 2 },
-                {"that", 1 },
+                {"that", 2 },
                 {"thing", 1 },
                 {"you", 1 },
                 {"so", 1 },
@@ -27,10 +28,29 @@ namespace FileWordsCounter.Tests
 
             Assert.AreEqual(expected["Go"], actual["Go"]);
             Assert.AreEqual(expected["do"], actual["do"]);
-            Assert.AreEqual(expected["that"], actual["thing"]);
+            Assert.AreEqual(expected["that"], actual["that"]);
+            Assert.AreEqual(expected["thing"], actual["thing"]);
             Assert.AreEqual(expected["you"], actual["you"]);
             Assert.AreEqual(expected["so"], actual["so"]);
             Assert.AreEqual(expected["well"], actual["well"]);
+        }
+
+        [TestMethod]
+        public void TryOpenFileAndGetContent()
+        {
+            string fileName = @".\TestFiles\Test.txt";
+            string expectedContent = "Go do that thing that you do so well";
+            string content = null;
+
+            if (FileProcessor.TryGetFileContent(fileName, out content))
+            {
+                Assert.IsFalse(String.IsNullOrEmpty(content));
+                Assert.AreEqual(expectedContent, content);
+            }
+            else
+            {
+                Assert.Fail();
+            }
         }
     }
 }

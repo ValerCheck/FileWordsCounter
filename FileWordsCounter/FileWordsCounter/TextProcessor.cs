@@ -24,6 +24,17 @@ namespace FileWordsCounter
                 }
             }
             return wordsAndCounts;
-        } 
+        }
+
+        public static string CountWordsFromTextAndGenerateOutputMessage(string text)
+        {
+            var wordsAndCounts = GetWordsAndCountsFromText(text);
+            StringBuilder sb = new StringBuilder();
+            foreach (var keyValuePair in wordsAndCounts)
+            {
+                sb.AppendLine($"{keyValuePair.Value}: {keyValuePair.Key}");
+            }
+            return sb.ToString();
+        }
     }
 }
