@@ -53,6 +53,12 @@
     <Compile Include="FileWordsCounterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileWordsCounter\FileWordsCounter.csproj">
+      <Project>{3928f380-acbf-4824-9c11-d441cb7b7590}</Project>
+      <Name>FileWordsCounter</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
